@@ -17,7 +17,7 @@ background_color = "dark"
 author = "Neo"
 
 menu_items = [
-    {name = "tags",  url = "/tags/"},
-    {name = "about", url = "/"},
+    {name = "tags",  url = "/niko-zola-blog/tags/"},
+    {name = "about", url = "/niko-zola-blog/about"},
     {name = "github", url = "https://github.com/nikoook", newtab = true},
 ]

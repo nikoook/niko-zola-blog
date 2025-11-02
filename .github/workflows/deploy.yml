@@ -1,17 +1,26 @@
 name: Deploy to GitHub Pages
+
 on:
   push:
-    branches: [main]
+    branches: [ main ]
+
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - uses: shalzz/zola-deploy-action@v0.17.2
-        env:
-          BUILD_DIR: .
-          BUILD_ONLY: false
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+        
+    - name: Setup Zola
+      uses: shalzz/zola-deploy-action@v0.17.2
+      env:
+        BUILD_DIR: .
+        # 使用 GitHub Token
+        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        args: build

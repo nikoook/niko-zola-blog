@@ -18,6 +18,6 @@ author = "Neo"
 
 menu_items = [
     {name = "tags",  url = "/tags/"},
-    {name = "about", url = "/about/"},
+    {name = "about", url = "/"},
     {name = "github", url = "https://github.com/nikoook", newtab = true},
 ]

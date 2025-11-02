@@ -1,5 +1,5 @@
 title = "Niko's Blog"
-base_url = "http://localhost:1111"
+base_url = "https://nikoook.github.io/niko-zola-blog"
 description = "My technical blog"
 
 theme = "terminimal"

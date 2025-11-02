@@ -1,26 +1,26 @@
-name: Deploy to GitHub Pages
+name: Deploy Zola to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
-
-permissions:
-  contents: write
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        submodules: recursive
-        
-    - name: Setup Zola
-      uses: shalzz/zola-deploy-action@v0.17.2
-      env:
-        BUILD_DIR: .
-        # 使用 GitHub Token
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        args: build
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          
+      - name: Build site
+        run: |
+          # 确保主题目录存在且正确
+          ls -la themes/terminimal/templates/
+          zola build
+          
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public

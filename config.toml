@@ -1,0 +1,28 @@
+title = "Niko's Blog"
+base_url = "https://nikoook.github.io/niko-zola-blog"
+description = "My technical blog"
+
+theme = "terminimal"
+compile_sass = true
+
+taxonomies = [
+    {name = "tags"},
+]
+
+[markdown]
+highlight_code = true
+
+[extra]
+accent_color = "blue"
+background_color = "dark"
+author = "Niko"
+
+menu_items = [
+    #{name = "Posts", url = "/blog/"},
+    {name = "Tags", url = "/tags/"},
+    {name = "About", url = "/about/"},
+    {name = "GitHub", url = "https://github.com/nikoook", newtab = true},
+]
+
+# 部署时使用这个 URL
+base_url = "https://nikoook.github.io/niko-zola-blog"

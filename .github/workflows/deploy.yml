@@ -1,11 +1,11 @@
-name: Deploy Zola site
+name: Deploy Zola to GitHub Pages
 
 on:
   push:
     branches: [main]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -13,21 +13,18 @@ jobs:
         with:
           submodules: recursive
           
-      - name: Setup Zola
+      - name: Install Zola
         run: |
-          curl -sSL https://github.com/getzola/zola/releases/download/v0.17.2/zola-v0.17.2-x86_64-unknown-linux-gnu.tar.gz | sudo tar xz -C /usr/local/bin
+          wget -q -O - https://github.com/getzola/zola/releases/download/v0.17.2/zola-v0.17.2-x86_64-unknown-linux-gnu.tar.gz | sudo tar xz -C /usr/local/bin
           
-      - name: Build
-        run: zola build
-        
-      - name: Deploy
+      - name: Build site
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git checkout --orphan gh-pages
-          git rm -rf .
-          cp -r public/* .
-          git add .
-          git commit -m "Deploy to GitHub Pages"
-          git push origin gh-pages --force
+          ls -la
+          zola build
+          
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          force_orphan: true

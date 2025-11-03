@@ -15,7 +15,7 @@ highlight_code = true
 accent_color = "blue"
 background_color = "dark"
 author = "Neo"
-
+logo_text = "No need to conpare I am alone"
 menu_items = [
     {name = "tags",  url = "/niko-zola-blog/tags/"},
     {name = "about", url = "/niko-zola-blog/about"},

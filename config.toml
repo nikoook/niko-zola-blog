@@ -21,3 +21,6 @@ menu_items = [
     {name = "about", url = "/niko-zola-blog/about"},
     {name = "github", url = "https://github.com/nikoook", newtab = true},
 ]
+
+enable_post_view_navigation = true
+post_view_navigation_prompt = "Read more"
